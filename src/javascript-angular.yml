@@ -1,0 +1,91 @@
+# Node.js with Angular
+# Build a Node.js project that uses Angular.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+# YAML reference:
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema
+
+trigger:
+- master
+
+variables:
+  BuildRootFolder: '[BUILD_PATH]'
+
+resources:
+- repo: self
+
+jobs:
+  - job: Phase_1
+    displayName: Staging
+
+    pool:
+      vmImage: 'Ubuntu-16.04'
+      demands: npm
+
+    condition: succeeded()
+
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '8.x'
+      displayName: 'Install Node.js'
+
+    - task: Npm@1
+      displayName: Install
+      inputs:
+        verbose: false
+
+    - task: Npm@1
+      displayName: Build
+      inputs:
+        command: custom
+        verbose: false
+        customCommand: 'run build --dev'
+
+    - task: ArchiveFiles@2
+      displayName: 'Archive dist'
+      inputs:
+        rootFolderOrFile: '$(BuildRootFolder)'
+        includeRootFolder: false
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-staging.zip'
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: drop'
+
+  - job: Phase_2
+    displayName: Production
+
+    pool:
+      vmImage: 'Ubuntu-16.04'
+      demands: npm
+
+    dependsOn: Phase_1
+    condition: succeeded()
+
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '8.x'
+      displayName: 'Install Node.js'
+
+    - task: Npm@1
+      displayName: Install
+      inputs:
+        verbose: false
+
+    - task: Npm@1
+      displayName: Build
+      inputs:
+        command: custom
+        verbose: false
+        customCommand: 'run build --prod'
+
+    - task: ArchiveFiles@2
+      displayName: 'Archive dist'
+      inputs:
+        rootFolderOrFile: '$(BuildRootFolder)'
+        includeRootFolder: false
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-production.zip'
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: drop'

@@ -1,0 +1,40 @@
+# Javascript & Node.js
+# Build a Node.js project that uses Npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/languages/javascript
+# YAML reference:
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema
+
+trigger:
+- master
+
+pool:
+  vmImage: 'Ubuntu 16.04'
+  demands: npm
+
+variables:
+  BuildRootFolder: '[BUILD_PATH]'
+
+resources:
+- repo: self
+
+steps:
+- task: NodeTool@0 
+  inputs:
+    versionSpec: '8.x'
+
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    command: install
+
+- task: ArchiveFiles@1
+  displayName: 'Archive files'
+  inputs:
+    rootFolder: '$(BuildRootFolder)'
+    includeRootFolder: false
+    archiveType: default
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+
