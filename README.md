@@ -1,20 +1,19 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# YAML scripts for Azure DevOps build pipelines
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+## Sumário
+* [Propósito](#proposito)
+* [Pipelines](#pipelines)
+* [Contribuição](#contribuicao)
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+## Propósito
+Propósito deste projeto é criar uma base de script para auxiliar na montagem dos pipelines de build no Azure DevOps.
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## Pipelines
+1.	Angular;
+2.	ASP.NET Core;
+3.	Node.js; e
+4.	Simple npm build.
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+
+## Contribuição
+Se deseja contribuir saiba mais sobre a formatação do arquivo README, veja em [Guia de Sintax](https://docs.microsoft.com/en-us/vsts/project/wiki/markdown-guidance?view=vsts)
