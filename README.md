@@ -1,4 +1,4 @@
-# YAML scripts for Azure DevOps build pipelines(pt-br)
+# YAML scripts for Azure DevOps build pipelines (pt-br)
 
 ## Sumário
 * [Propósito](#propósito)
