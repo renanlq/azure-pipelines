@@ -15,7 +15,7 @@ variables:
   BuildConfiguration: 'Release'
   RestoreBuildProjects: '**/*.csproj'
   RestoreBuildProjectsTest: '**/*[Tt]ests/*.csproj'
-  WizCrossFeed: '09b2821a-2950-4eff-a722-dbc8adf4da55'
+  NugetFeed: 'UID'
 
 resources:
 - repo: self
