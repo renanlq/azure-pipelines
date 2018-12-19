@@ -9,10 +9,10 @@
 Propósito deste projeto é criar uma base de script para auxiliar na montagem dos pipelines de build no Azure DevOps.
 
 ## Pipelines
-1.	Angular;
-2.	ASP.NET Core;
-3.	Node.js; e
-4.	Simple npm build.
+1.	[Angular](https://github.com/renanlq/azure-pipelines/blob/master/src/javascript-angular.yml);
+2.	[ASP.NET Core](https://github.com/renanlq/azure-pipelines/blob/master/src/aspnet-core.yml);
+3.	[Node.js](https://github.com/renanlq/azure-pipelines/blob/master/src/javascript-nodejs.yml); e
+4.	[Simple npm build](https://github.com/renanlq/azure-pipelines/blob/master/src/javascript-npm.yml).
 
 
 ## Contribuição
