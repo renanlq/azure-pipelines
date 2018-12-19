@@ -1,9 +1,9 @@
 # YAML scripts for Azure DevOps build pipelines
 
 ## Sumário
-* [Propósito](#proposito)
+* [Propósito](#propósito)
 * [Pipelines](#pipelines)
-* [Contribuição](#contribuicao)
+* [Contribuição](#contribuição)
 
 ## Propósito
 Propósito deste projeto é criar uma base de script para auxiliar na montagem dos pipelines de build no Azure DevOps.
