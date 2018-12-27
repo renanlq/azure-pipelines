@@ -16,12 +16,12 @@ resources:
 - repo: self
 
 steps:
-- task: ArchiveFiles@2
+- task: ArchiveFiles@1
   displayName: 'Archive files'
   inputs:
-    rootFolderOrFile: '$(BuildRootFolder)'
+    rootFolder: '$(BuildRootFolder)'
     includeRootFolder: false
-    archiveFile: zip
+    archiveType: default
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
