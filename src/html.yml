@@ -1,0 +1,27 @@
+# HTML
+# Archive your static HTML project and save it with the build record.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+variables:
+  BuildRootFolder: ''
+
+resources:
+- repo: self
+
+steps:
+- task: ArchiveFiles@2
+  displayName: 'Archive files'
+  inputs:
+    rootFolderOrFile: '$(BuildRootFolder)'
+    includeRootFolder: false
+    archiveFile: zip
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
