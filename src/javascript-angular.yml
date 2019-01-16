@@ -2,6 +2,7 @@
 # Build a Node.js project that uses Angular.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+# IMPORTANT! In task NPM Run Build see configuration in: src/javascript-angular.md
 # YAML reference:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema
 
@@ -16,7 +17,7 @@ resources:
 
 jobs:
   - job: Phase_1
-    displayName: Staging
+    displayName: 'Staging'
 
     pool:
       vmImage: 'Ubuntu-16.04'
@@ -40,7 +41,7 @@ jobs:
       inputs:
         command: custom
         verbose: false
-        customCommand: 'run build --dev'
+        customCommand: 'run build-staging'
 
     - task: ArchiveFiles@2
       displayName: 'Archive dist'
@@ -53,7 +54,7 @@ jobs:
       displayName: 'Publish Artifact: drop'
 
   - job: Phase_2
-    displayName: Production
+    displayName: 'Production'
 
     pool:
       vmImage: 'Ubuntu-16.04'
@@ -78,7 +79,7 @@ jobs:
       inputs:
         command: custom
         verbose: false
-        customCommand: 'run build --prod'
+        customCommand: 'run build-prod'
 
     - task: ArchiveFiles@2
       displayName: 'Archive dist'
