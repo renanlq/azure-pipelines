@@ -1,0 +1,33 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'vs2017-win2016'
+
+variables:
+  RestoreBuildProjects: '**/*.csproj'
+  RestoreDacpacFolder: '**/*[Bn]in/*[Dd]ebug/'
+  NugetFeed: 'UID'
+
+steps:
+- task: MSBuild@1
+  inputs:
+    solution: '$(RestoreBuildProjects)'
+
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: '$(RestoreDacpacFolder)'
+    contents: '*.dacpac' 
+    targetFolder: $(build.artifactstagingdirectory)
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'drop' 
+    publishLocation: 'container'
+    targetPath: 'drop'
