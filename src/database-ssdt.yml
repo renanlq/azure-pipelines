@@ -4,7 +4,12 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - [projectfolder]/*
 
 pool:
   vmImage: 'vs2017-win2016'
@@ -12,7 +17,6 @@ pool:
 variables:
   RestoreBuildProjects: '**/*.csproj'
   RestoreDacpacFolder: '**/*[Bn]in/*[Dd]ebug/'
-  NugetFeed: 'UID'
 
 steps:
 - task: MSBuild@1
