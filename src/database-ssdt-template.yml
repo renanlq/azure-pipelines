@@ -19,6 +19,6 @@ jobs:
     vmImage: 'vs2017-win2016'
     project: '$(projectName)'
     projectPath: '**/$(projectName).sqlproj' 
-    buildPath: '**/$(projectName)/bin/Debug/'
+    buildPath: '**/*[Bn]in/*[Dd]ebug/'
     artifactstagingdirectory: $(build.artifactstagingdirectory)
     artifactName: '$(projectName)-dacpac'
