@@ -7,17 +7,17 @@ jobs:
   steps:
   - task: MSBuild@1
     inputs:
-      solution: '${{parameters.projectPath}}/${{parameters.project}}.sqlproj'
+      solution: '${{parameters.projectPath}}'
 
   - task: CopyFiles@2
     inputs:
-      sourceFolder: '${{parameters.projectPath}}/${{parameters.project}}/bin/Debug/'
+      sourceFolder: '${{parameters.buildPath}}'
       contents: '*.dacpac' 
-      targetFolder: $(build.artifactstagingdirectory)
+      targetFolder: '${{parameters.artifactstagingdirectory}}'
 
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-      artifactName: '${{parameters.project}}-dacpac' 
+      pathtoPublish: '${{parameters.artifactstagingdirectory}}'
+      artifactName: '${{parameters.artifactName}}' 
       publishLocation: 'container'
       targetPath: 'drop'

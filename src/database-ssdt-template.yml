@@ -9,10 +9,16 @@ trigger:
 resources:
 - repo: self
 
+parameters:
+  projectName: 'Company.Solution.Database'
+
 jobs:
 - template: templates/database-build.yml
   parameters:
     name: Log
     vmImage: 'vs2017-win2016'
-    project: 'src/Company.Project.Database'
-    projectPath: '$(ProjectPath)'
+    project: '$(projectName)'
+    projectPath: '**/$(projectName).sqlproj' 
+    buildPath: '**/$(projectName)/bin/Debug/'
+    artifactstagingdirectory: $(build.artifactstagingdirectory)
+    artifactName: '$(projectName)-dacpac'
