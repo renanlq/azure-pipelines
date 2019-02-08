@@ -7,11 +7,11 @@ jobs:
   steps:
   - task: MSBuild@1
     inputs:
-      solution: '${{projectPath}}/${{parameters.project}}.sqlproj'
+      solution: '${{parameters.projectPath}}/${{parameters.project}}.sqlproj'
 
   - task: CopyFiles@2
     inputs:
-      sourceFolder: '${{projectPath}}/${{parameters.project}}/bin/Debug/'
+      sourceFolder: '${{parameters.projectPath}}/${{parameters.project}}/bin/Debug/'
       contents: '*.dacpac' 
       targetFolder: $(build.artifactstagingdirectory)
 
