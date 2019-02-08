@@ -9,7 +9,7 @@ trigger:
 resources:
 - repo: self
 
-parameters:
+variables:
   projectName: 'Company.Solution.Database'
 
 jobs:
