@@ -15,4 +15,4 @@ jobs:
     name: Log
     vmImage: 'vs2017-win2016'
     project: 'src/Company.Project.Database'
-    projectPath: $(ProjectPath)
+    projectPath: '$(ProjectPath)'
