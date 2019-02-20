@@ -1,0 +1,46 @@
+# Node.js with Angular
+# Build a Node.js project that uses Angular.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+# YAML reference:
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema
+
+trigger:
+  branches:
+    include:
+    - master
+    - releases/*
+  paths:
+    exclude:
+    - README.md
+
+resources:
+- repo: self
+
+variables:
+  vmImage: 'Ubuntu-16.04'
+  versionSpec: '8.x'
+  buildRootFolder: 'dist/name-app'
+
+jobs:
+- template: templates/database-build.yml
+  parameters:
+    job: Phase_1
+    displayName: 'Staging'
+    vmImage: '$(vmImage)'
+    versionSpec: '$(versionSpec)'
+    customCommand: 'run build --dev'
+    rootFolderOrFile: '$(BuildRootFolder)'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-staging.zip'
+
+- template: templates/database-build.yml
+  dependsOn: Phase_1
+  condition: success()
+  parameters:
+    job: Phase_2
+    displayName: 'Production'
+    vmImage: '$(vmImage)'
+    versionSpec: '$(versionSpec)'
+    customCommand: 'run build --prod'
+    rootFolderOrFile: '$(BuildRootFolder)'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-production.zip'
