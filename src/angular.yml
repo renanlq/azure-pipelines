@@ -10,7 +10,7 @@ trigger:
 - master
 
 variables:
-  BuildRootFolder: '[BUILD_PATH]'
+  BuildRootFolder: 'dist/name-app'
 
 resources:
 - repo: self

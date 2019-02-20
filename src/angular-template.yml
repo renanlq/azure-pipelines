@@ -2,6 +2,7 @@
 # Build a Node.js project that uses Angular.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+# IMPORTANT! In task NPM Run Build see configuration in: src/javascript-angular.md
 # YAML reference:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema
 
