@@ -11,7 +11,7 @@ Propósito deste projeto é criar uma base de script para auxiliar na montagem d
 ## Pipelines
 1.	[Angular](https://github.com/renanlq/azure-pipelines/blob/master/src/angular.yml);
 2.	[Angular (with template)](https://github.com/renanlq/azure-pipelines/blob/master/src/angular-template.yml);
-3.  [ASP.NET](https://github.com/renanlq/azure-pipelines/blob/master/src/aspnet.yml)
+3.  [ASP.NET](https://github.com/renanlq/azure-pipelines/blob/master/src/aspnet.yml);
 4.	[ASP.NET Core](https://github.com/renanlq/azure-pipelines/blob/master/src/aspnetcore.yml);
 5.	[Database](https://github.com/renanlq/azure-pipelines/blob/master/src/database-ssdt.yml);
 6.	[Database (with template)](https://github.com/renanlq/azure-pipelines/blob/master/src/database-ssdt-template.yml);
