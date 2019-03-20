@@ -1,11 +1,10 @@
-# Node.js with Angular
-# Build a Node.js project that uses Angular.
+# Node.js with React
+# Build a Node.js project that uses React.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 # YAML reference:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema
-# Template: templates/angular-build.yml
-# IMPORTANT! In task NPM Run Build see configuration in: src/angular.md
+# Template: templates/react-build.yml
 
 trigger:
   branches:
@@ -15,14 +14,13 @@ trigger:
   paths:
     exclude:
     - README.md
-
 resources:
 - repo: self
 
 variables:
   vmImage: 'Ubuntu-16.04'
   versionSpec: '8.x'
-  buildRootFolder: 'dist/name-app'
+  buildRootFolder: 'build'
 
 jobs:
 - template: templates/database-build.yml

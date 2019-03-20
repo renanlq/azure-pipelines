@@ -1,0 +1,39 @@
+# File: templates/react-build.yml
+
+jobs:
+  - job: ${{parameters.job}}
+    displayName: ${{parameters.displayName}}
+
+    pool:
+      vmImage: ${{parameters.vmImage}}
+      demands: npm
+
+    condition: succeeded()
+
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: ${{parameters.versionSpec}}
+      displayName: 'Install Node.js'
+
+    - task: Npm@1
+      displayName: Install
+      inputs:
+        verbose: false
+
+    - task: Npm@1
+      displayName: Build
+      inputs:
+        command: custom
+        verbose: false
+        customCommand: ${{parameters.customCommand}}
+
+    - task: ArchiveFiles@2
+      displayName: 'Archive dist'
+      inputs:
+        rootFolderOrFile: ${{parameters.rootFolderOrFile}}
+        includeRootFolder: false
+        archiveFile:  ${{parameters.archiveFile}}
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: drop'

@@ -6,8 +6,13 @@
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema
 
 trigger:
-- master
-
+  branches:
+    include:
+    - master
+    - releases/*
+  paths:
+    exclude:
+    - README.md
 pool:
   vmImage: 'Ubuntu 16.04'
   demands: npm

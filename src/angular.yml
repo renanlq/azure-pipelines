@@ -7,7 +7,13 @@
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema
 
 trigger:
-- master
+  branches:
+    include:
+    - master
+    - releases/*
+  paths:
+    exclude:
+    - README.md
 
 variables:
   BuildRootFolder: 'dist/name-app'
