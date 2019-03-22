@@ -17,7 +17,7 @@ pool:
 
 variables:
   RestoreBuildProjects: '**/*.csproj'
-  RestoreDacpacFolder: '**/*[Bn]in/*[Dd]ebug/'
+  RestoreDacpacFolder: '**/*[Bb]in/*[Dd]ebug/'
 
 steps:
 - task: MSBuild@1
