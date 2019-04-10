@@ -41,7 +41,7 @@ steps:
     arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
-  displayName: Code coverage
+  displayName: Test
   inputs:
     command: test
     projects: '$(RestoreBuildProjectsTest)'
