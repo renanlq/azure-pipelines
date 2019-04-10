@@ -41,18 +41,12 @@ steps:
     arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
-  displayName: Test
-  inputs:
-    command: test
-    projects: '$(RestoreBuildProjectsTest)'
-    arguments: '--configuration $(BuildConfiguration)'
-
-- task: DotNetCoreCLI@2
   displayName: Code coverage
   inputs:
     command: test
     projects: '$(RestoreBuildProjectsTest)'
     arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
+    publishTestResults: true
 
 - task: DotNetCoreCLI@2
   displayName: Publish
