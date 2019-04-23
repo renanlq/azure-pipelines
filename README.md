@@ -4,7 +4,7 @@
 * [Purpose](#purpose)
 * [Pipelines](#pipelines))
 * [References](#references)
-* [Contribution](#Contribution)
+* [Contribution](#contribution)
 
 ## Purpose
 Templates of YAML script for Azure DevOps projects based on it's types.
