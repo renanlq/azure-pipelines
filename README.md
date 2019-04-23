@@ -20,4 +20,4 @@ Propósito deste projeto é criar uma base de script para auxiliar na montagem d
 9.	[React](https://github.com/renanlq/azure-pipelines/blob/master/src/react.yml).
 
 ## Contribuição
-Se deseja contribuir saiba mais sobre a formatação do arquivo README, veja no [Guia de Sintax](https://docs.microsoft.com/en-us/vsts/project/wiki/markdown-guidance?view=vsts)
+Se deseja contribuir saiba mais sobre a formatação do arquivo README, veja em [Guia de Sintax](https://docs.microsoft.com/en-us/vsts/project/wiki/markdown-guidance?view=vsts)
