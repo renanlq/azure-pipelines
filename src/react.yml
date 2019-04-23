@@ -13,6 +13,7 @@ trigger:
   paths:
     exclude:
     - README.md
+
 variables:
   BuildRootFolder: 'build'
 

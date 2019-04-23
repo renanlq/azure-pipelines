@@ -23,7 +23,7 @@ variables:
   buildRootFolder: 'build'
 
 jobs:
-- template: templates/database-build.yml
+- template: templates/react-build.yml
   parameters:
     job: Phase_1
     displayName: 'Staging'
@@ -33,7 +33,7 @@ jobs:
     rootFolderOrFile: '$(BuildRootFolder)'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-staging.zip'
 
-- template: templates/database-build.yml
+- template: templates/react-build.yml
   dependsOn: Phase_1
   condition: success()
   parameters:
