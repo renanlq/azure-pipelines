@@ -1,12 +1,13 @@
 # YAML scripts for Azure DevOps build pipelines (pt-br)
 
-## Sumário
-* [Propósito](#propósito)
-* [Pipelines](#pipelines)
-* [Contribuição](#contribuição)
+## Summary
+* [Purpose](#purpose)
+* [Pipelines](#pipelines))
+* [References](#references)
+* [Contribution](#Contribution)
 
-## Propósito
-Propósito deste projeto é criar uma base de script para auxiliar na montagem dos pipelines de build no Azure DevOps.
+## Purpose
+Templates of YAML script for Azure DevOps projects based on it's types.
 
 ## Pipelines
 1.	[Angular](https://github.com/renanlq/azure-pipelines/blob/master/src/angular.yml);
@@ -19,5 +20,9 @@ Propósito deste projeto é criar uma base de script para auxiliar na montagem d
 8.	[Npm (install only)](https://github.com/renanlq/azure-pipelines/blob/master/src/npm.yml); e
 9.	[React](https://github.com/renanlq/azure-pipelines/blob/master/src/react.yml).
 
-## Contribuição
-Se deseja contribuir saiba mais sobre a formatação do arquivo README, veja em [Guia de Sintax](https://docs.microsoft.com/en-us/vsts/project/wiki/markdown-guidance?view=vsts)
+## References
+1. [Azure Pipelines](https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops)
+2. [YAML schema reference](https://aka.ms/yaml)
+
+## Contribution
+If you want to contribute, please read more about markdown tags to edit README file, in [Syntax guidance for Markdown usage](https://docs.microsoft.com/en-us/vsts/project/wiki/markdown-guidance?view=vsts).
