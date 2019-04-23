@@ -16,7 +16,7 @@ pool:
   vmImage: 'vs2017-win2016'
 
 variables:
-  RestoreBuildProjects: '**/*.csproj'
+  RestoreBuildProjects: '**/*.sqlproj'
   RestoreDacpacFolder: '**/*[Bb]in/*[Dd]ebug/'
 
 steps:
