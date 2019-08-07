@@ -17,8 +17,9 @@ Templates of YAML script for Azure DevOps projects based on it's types.
 5.	[Database](https://github.com/renanlq/azure-pipelines/blob/master/src/database-ssdt.yml);
 6.	[Database (with template)](https://github.com/renanlq/azure-pipelines/blob/master/src/database-ssdt-template.yml);
 7.	[Node.js](https://github.com/renanlq/azure-pipelines/blob/master/src/nodejs.yml);
-8.	[Npm (install only)](https://github.com/renanlq/azure-pipelines/blob/master/src/npm.yml); e
-9.	[React](https://github.com/renanlq/azure-pipelines/blob/master/src/react.yml).
+8.	[Npm (install only)](https://github.com/renanlq/azure-pipelines/blob/master/src/npm.yml);
+9.	[React](https://github.com/renanlq/azure-pipelines/blob/master/src/react.yml);
+10. [Salesforce (Ant)](https://github.com/renanlq/azure-pipelines/blob/master/src/salesforce.yml).
 
 ## References
 1. [Azure Pipelines](https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops)
