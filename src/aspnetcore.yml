@@ -18,42 +18,64 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  BuildConfiguration: 'Release'
-  RestoreBuildProjects: '**/*.csproj'
-  RestoreBuildProjectsTest: '**/*[Tt]ests/*.csproj'
-  NugetFeed: 'UID'
+  buildConfiguration: 'Release'
+  restoreBuildProjects: '**/*.csproj'
+  restoreBuildProjectsTest: '**/*[Tt]ests/*.csproj'
+  nugetFeed: 'UID'
 
 resources:
 - repo: self
 
 steps:
+- script: 'echo "$(Build.DefinitionName), $(Build.BuildId), $(Build.BuildNumber)" > buildinfo.txt'
+  displayName: 'Build info'
+  workingDirectory: '$(Build.ArtifactStagingDirectory)'
+
 - task: DotNetCoreCLI@2
-  displayName: Restore
+  displayName: 'Restore dependencies'
   inputs:
     command: restore
-    projects: '$(RestoreBuildProjects)'
-    feedRestore: '$(NugetFeed)'
+    projects: '$(restoreBuildProjects)'
+    feedRestore: '$(nugetFeed)'
 
 - task: DotNetCoreCLI@2
-  displayName: Build
+  displayName: 'Build project - $(buildConfiguration)'
   inputs:
-    projects: '$(RestoreBuildProjects)'
-    arguments: '--configuration $(BuildConfiguration)'
+    command: build
+    projects: '$(restoreBuildProjects)'
+    arguments: '--no-restore --configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
-  displayName: Test
+  displayName: 'Install ReportGenerator'
+  inputs:
+    command: custom
+    custom: tool
+    arguments: 'install --global dotnet-reportgenerator-globaltool'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run unit tests - $(buildConfiguration)'
   inputs:
     command: test
-    projects: '$(RestoreBuildProjectsTest)'
-    arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
+    projects: '$(restoreBuildProjectsTest)'
+    arguments: '--no-build --configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/'
     publishTestResults: true
 
+- script: |
+    reportgenerator -reports:$(Build.SourcesDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage -reporttypes:HtmlInline_AzurePipelines
+  displayName: 'Create code coverage report'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage report'
+  inputs:
+    codeCoverageTool: 'cobertura'
+    summaryFileLocation: '$(Build.SourcesDirectory)/**/coverage.cobertura.xml'
+
 - task: DotNetCoreCLI@2
-  displayName: Publish
+  displayName: 'Publish project - $(buildConfiguration)'
   inputs:
     command: publish
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    projects: '$(RestoreBuildProjects)'
+    projects: '$(restoreBuildProjects)'
+    arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
     publishWebProjects: false
     modifyOutputPath: true
     zipAfterPublish: true
