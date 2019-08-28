@@ -1,0 +1,63 @@
+# ASP.NET Core
+# Build a Web project that uses ASP.NET Core.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+# YAML reference:
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema
+
+trigger:
+  branches:
+    include:
+    - master
+    - releases/*
+  paths:
+    exclude:
+    - README.md
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+variables:
+  artifactFeed: 'Company.Project.Models'
+  buildConfiguration: 'Release'
+  majorVersion: '1'
+  minorVersion: '0'
+  patchVersion: '0'
+  restoreBuildProjects: '**/*.csproj'
+  restoreBuildProjectsTest: '**/*[Tt]ests/*.csproj'
+
+resources:
+- repo: self
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: 'Restore dependencies'
+  inputs:
+    command: restore
+    projects: '$(restoreBuildProjects)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build the project - $(buildConfiguration)'
+  inputs:
+    command: 'build'
+    arguments: '--no-restore --configuration $(buildConfiguration)'
+    projects: '$(restoreBuildProjects)'
+    
+- task: DotNetCoreCLI@2
+  displayName: 'Pack the project - $(buildConfiguration)'
+  inputs:
+    command: 'pack'
+    projects: '$(restoreBuildProjects)'
+    arguments: '--no-build --configuration $(buildConfiguration)'
+    versioningScheme: byPrereleaseNumber
+    majorVersion: '$(majorVersion)'
+    minorVersion: '$(minorVersion)'
+    patchVersion: '$(patchVersion)'
+
+- task: NuGetCommand@2
+  displayName: 'Publish NuGet package'
+  inputs:
+    command: push
+    publishVstsFeed: '$(artifactFeed)'
+    allowPackageConflicts: true
+  condition: succeeded()
